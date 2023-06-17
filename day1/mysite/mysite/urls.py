@@ -17,34 +17,45 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.http import HttpResponse
+from . import views
 
-def hello(request):
-    return HttpResponse("<h1>hello</h1>")
+# def hello(request):
+#     return HttpResponse("<h1>hello</h1>")
 
-def index(request):
-    html = """<!doctype html>
-    <html>
-        <head>
-            <title>Django</title>
-            <meta charset="utf-8">
-        </head>
-        <body>
-            <h1><a href="/">Django</a></h1>
-            <ol>
-                <li><a href="/chapter01/">Setting & Deploy</a></li>
-                <li><a href="/chapter02/">Routing & View</a></li>
-            </ol>
-            <h2>Django</h2>
-            <p><a href="https://www.djangoproject.com/" target="_blank">Django</a>는
-            Python으로 작성된 오픈 소스 웹 프레임워크로, 빠르고 쉬운 웹 개발을 가능하게 합니다.
-            </p>
-        </body>
-    </html>"""
-    return HttpResponse(html)
+# def index(request):
+#     html = """<!doctype html>
+#     <html>
+#         <head>
+#             <title>Django</title>
+#             <meta charset="utf-8">
+#         </head>
+#         <body>
+#             <h1><a href="/">Django</a></h1>
+#             <ol>
+#                 <li><a href="/chapter01/">Setting & Deploy</a></li>
+#                 <li><a href="/chapter02/">Routing & View</a></li>
+#             </ol>
+#             <h2>Django</h2>
+#             <p><a href="https://www.djangoproject.com/" target="_blank">Django</a>는
+#             Python으로 작성된 오픈 소스 웹 프레임워크로, 빠르고 쉬운 웹 개발을 가능하게 합니다.
+#             </p>
+#         </body>
+#     </html>"""
+#     return HttpResponse(html)
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('hello/', hello),
+#     path('', index),
+# ]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello/', hello),
-    path('', index),
+    path('', views.index),
+    path('blog/', views.list),
+    path('blog/post/<id>', views.post),
+    path('gugu/<int:num>', views.gugu),
+    path('daum/', views.daum),
 ]
+
 
