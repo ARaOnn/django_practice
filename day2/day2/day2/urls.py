@@ -15,10 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from . import views
 from django.http import FileResponse
 from django.shortcuts import render
+# from blog import views as blogView
 
 # 동적 이미지 로드
 def load_img(req, name):
@@ -36,5 +37,7 @@ urlpatterns = [
     path('chapter/<id>/', views.chapter),
     path('images/<name>/' , load_img),
     path('control/', views.control),
-    path('child/', views.child)
+    path('child/', views.child),
+    # path('blog/', blogView.post_list),   
+    path('blog/', include('blog.urls')), # blog폴더 뒤의 url을 blog.urls.py에 위임
 ]
