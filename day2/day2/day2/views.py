@@ -18,7 +18,10 @@ def index(req):
 	# 	title='Django',
 	# 	content = "Django is ..."
 	# ))
-	return render(req, 'index.html')
+	# data 넘길 때 dic형태
+	data = {'title' : 'Django',
+         	'content' : '<a href="https://www.djangoproject.com/">Django</a> is ...'}
+	return render(req, 'index.html', data)
 
 def chapter(req, id):
     chapters = {
@@ -26,4 +29,16 @@ def chapter(req, id):
 	"02": {"title": "Routing & View" , "content": "Routing & View is ..." },
 	}
     # return HttpResponse(html.format(**chapters.get(id)))
-    return render(req, 'index.html')
+    return render(req, 'index.html', chapters.get(id))
+
+def control(req):
+    data = {
+		'variable' : True,
+		'another_variable' : True,
+		'item_list' : ['a', 'b', 'c'],
+		'item_dict' : {'a' : 4, 'b' : 4, 'c' : 2}
+	}
+    return render(req, 'control.html', data)
+
+def child(req):
+    return render(req, 'child.html')

@@ -35,5 +35,6 @@ urlpatterns = [
     path('hello/', hello),
     path('chapter/<id>/', views.chapter),
     path('images/<name>/' , load_img),
-
+    path('control/', views.control),
+    path('child/', views.child)
 ]
