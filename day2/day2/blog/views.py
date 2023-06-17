@@ -8,7 +8,8 @@ def post_list(req : HttpRequest ) -> HttpResponse:
 		{'id': 2, 'title': 'css', 'content': 'css is ...' },
 		{'id': 3, 'title': 'javascript' , 'content': 'javascript is ...' },
 	]
-	return HttpResponse(posts)
+	# return HttpResponse(posts)
+	return render(req, 'blog/list.html', {'post_list' : posts})
 
 def post_detail(req):
     return HttpResponse('detail')
