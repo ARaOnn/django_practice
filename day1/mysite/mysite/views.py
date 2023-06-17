@@ -1,4 +1,7 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponseRedirect, HttpResponseNotFound
+import json
+from django.views.decorators.csrf import csrf_exempt
 
 # def index(request):
 #     return HttpResponse('Hello')
@@ -45,9 +48,31 @@ chapters = {
 
 def index(request):
     d = {'title' : 'django', 
-         'content' : 'django is ...'}
+        'content' : 'django is ...'}
     return HttpResponse(html.format(**d))
 
 def chapter(req, id):
     return HttpResponse(html.format(**chapters.get(id)))
 
+def hello(request):
+	return HttpResponse( "Hello, world!" )
+
+def hello_json(request):
+	data = { 'message': 'Hello, world!' }
+	return JsonResponse(data)
+
+def redirect_to_hello(request):
+	return HttpResponseRedirect( '/hello/')
+
+def page_not_found(request):
+    return HttpResponseNotFound( '<h1>Page not found</h1>')
+
+# csrf 보호기능 해제
+# get : 그냥 정보를 내어줄 때
+# post : 사용자로부터 서버가 정보를 전달받을 때 사용
+@csrf_exempt
+def search(request):
+	print(request.method)
+	print(f"Query String: {request.GET.get( 'q')}")
+	print(f"BODY: {request.POST.get( 'key', '')}")
+	return HttpResponse( f'search')

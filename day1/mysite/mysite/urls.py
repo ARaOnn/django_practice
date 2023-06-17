@@ -56,7 +56,10 @@ urlpatterns = [
     path('blog/post/<id>', views.post),
     path('gugu/<int:num>', views.gugu),
     path('daum/', views.daum),
-    path('chapter/<id>/', views.chapter)
+    path('chapter/<id>/', views.chapter),
+    path('hello/', views.hello),
+    path('hello_json/', views.hello_json),
+    path('redirect_to_hello/', views.redirect_to_hello),
+    path('page_not_found/', views.page_not_found),
+	path('search/', views.search)
 ]
-
-
