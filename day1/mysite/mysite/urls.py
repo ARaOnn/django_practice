@@ -56,6 +56,7 @@ urlpatterns = [
     path('blog/post/<id>', views.post),
     path('gugu/<int:num>', views.gugu),
     path('daum/', views.daum),
+    path('chapter/<id>/', views.chapter)
 ]
 
 
